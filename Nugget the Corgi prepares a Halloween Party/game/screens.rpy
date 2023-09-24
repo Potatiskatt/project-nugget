@@ -4,7 +4,6 @@
 
 init offset = -1
 
-
 ################################################################################
 ## Styles
 ################################################################################
@@ -84,14 +83,9 @@ style frame:
 
 ## Say screen ##################################################################
 ##
-## The say screen is used to display dialogue to the player. It takes two
-## parameters, who and what, which are the name of the speaking character and
-## the text to be displayed, respectively. (The who parameter can be None if no
-## name is given.)
+## The say screen is used to display dialogue to the player. It takes two parameters, who and what, which are the name of the speaking character and the text to be displayed, respectively. (The who parameter can be None if no name is given.)
 ##
-## This screen must create a text displayable with id "what", as Ren'Py uses
-## this to manage text display. It can also create displayables with id "who"
-## and id "window" to apply style properties.
+## This screen must create a text displayable with id "what", as Ren'Py uses this to manage text display. It can also create displayables with id "who" and id "window" to apply style properties.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
@@ -111,8 +105,7 @@ screen say(who, what):
         text what id "what"
 
 
-    ## If there's a side image, display it above the text. Do not display on the
-    ## phone variant - there's no room.
+    ## If there's a side image, display it above the text. Do not display on the phone variant - there's no room.
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
 
@@ -164,11 +157,9 @@ style say_dialogue:
 
 ## Input screen ################################################################
 ##
-## This screen is used to display renpy.input. The prompt parameter is used to
-## pass a text prompt in.
+## This screen is used to display renpy.input. The prompt parameter is used to pass a text prompt in.
 ##
-## This screen must create an input displayable with id "input" to accept the
-## various input parameters.
+## This screen must create an input displayable with id "input" to accept the various input parameters.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#input
 
@@ -199,9 +190,7 @@ style input:
 
 ## Choice screen ###############################################################
 ##
-## This screen is used to display the in-game choices presented by the menu
-## statement. The one parameter, items, is a list of objects, each with caption
-## and action fields.
+## This screen is used to display the in-game choices presented by the menu statement. The one parameter, items, is a list of objects, each with caption and action fields.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
@@ -219,7 +208,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 405
+    ypos 750
     yanchor 0.5
 
     spacing gui.choice_spacing
@@ -233,8 +222,7 @@ style choice_button_text is default:
 
 ## Quick Menu screen ###########################################################
 ##
-## The quick menu is displayed in-game to provide easy access to the out-of-game
-## menus.
+## The quick menu is displayed in-game to provide easy access to the out-of-game menus.
 
 screen quick_menu():
 
@@ -264,7 +252,7 @@ screen quick_menu():
 init python:
     config.overlay_screens.append("quick_menu")
 
-default quick_menu = True
+default quick_menu = False
 
 style quick_button is default
 style quick_button_text is button_text
@@ -282,8 +270,7 @@ style quick_button_text:
 
 ## Navigation screen ###########################################################
 ##
-## This screen is included in the main and game menus, and provides navigation
-## to other menus, and to start the game.
+## This screen is included in the main and game menus, and provides navigation to other menus, and to start the game.
 
 screen navigation():
 
@@ -326,8 +313,7 @@ screen navigation():
 
         if renpy.variant("pc"):
 
-            ## The quit button is banned on iOS and unnecessary on Android and
-            ## Web.
+            ## The quit button is banned on iOS and unnecessary on Android and Web.
             textbutton _("Quit") action Quit(confirm=not main_menu)
 
 
@@ -359,8 +345,7 @@ screen main_menu():
     frame:
         style "main_menu_frame"
 
-    ## The use statement includes another screen inside this one. The actual
-    ## contents of the main menu are in the navigation screen.
+    ## The use statement includes another screen inside this one. The actual contents of the main menu are in the navigation screen.
     use navigation
 
     if gui.show_name:
@@ -406,12 +391,9 @@ style main_menu_version:
 
 ## Game Menu screen ############################################################
 ##
-## This lays out the basic common structure of a game menu screen. It's called
-## with the screen title, and displays the background, title, and navigation.
+## This lays out the basic common structure of a game menu screen. It's called with the screen title, and displays the background, title, and navigation.
 ##
-## The scroll parameter can be None, or one of "viewport" or "vpgrid". When
-## this screen is intended to be used with one or more children, which are
-## transcluded (placed) inside it.
+## The scroll parameter can be None, or one of "viewport" or "vpgrid". When this screen is intended to be used with one or more children, which are transcluded (placed) inside it.
 
 screen game_menu(title, scroll=None, yinitial=0.0):
 
@@ -536,16 +518,13 @@ style return_button:
 ##
 ## This screen gives credit and copyright information about the game and Ren'Py.
 ##
-## There's nothing special about this screen, and hence it also serves as an
-## example of how to make a custom screen.
+## There's nothing special about this screen, and hence it also serves as an example of how to make a custom screen.
 
 screen about():
 
     tag menu
 
-    ## This use statement includes the game_menu screen inside this one. The
-    ## vbox child is then included inside the viewport inside the game_menu
-    ## screen.
+    ## This use statement includes the game_menu screen inside this one. The vbox child is then included inside the viewport inside the game_menu screen.
     use game_menu(_("About"), scroll="viewport"):
 
         style_prefix "about"
@@ -553,7 +532,6 @@ screen about():
         vbox:
 
             label "[config.name!t]"
-            text _("Version [config.version!t]\n")
 
             ## gui.about is usually set in options.rpy.
             if gui.about:
@@ -572,12 +550,9 @@ style about_label_text:
 
 ## Load and Save screens #######################################################
 ##
-## These screens are responsible for letting the player save the game and load
-## it again. Since they share nearly everything in common, both are implemented
-## in terms of a third screen, file_slots.
+## These screens are responsible for letting the player save the game and load it again. Since they share nearly everything in common, both are implemented in terms of a third screen, file_slots.
 ##
-## https://www.renpy.org/doc/html/screen_special.html#save https://
-## www.renpy.org/doc/html/screen_special.html#load
+## https://www.renpy.org/doc/html/screen_special.html#save https://www.renpy.org/doc/html/screen_special.html#load
 
 screen save():
 
@@ -601,8 +576,7 @@ screen file_slots(title):
 
         fixed:
 
-            ## This ensures the input will get the enter event before any of the
-            ## buttons do.
+            ## This ensures the input will get the enter event before any of the buttons do.
             order_reverse True
 
             ## The page name, which can be edited by clicking on a button.
@@ -703,8 +677,7 @@ style slot_button_text:
 
 ## Preferences screen ##########################################################
 ##
-## The preferences screen allows the player to configure the game to better suit
-## themselves.
+## The preferences screen allows the player to configure the game to better suit themselves.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
@@ -734,8 +707,7 @@ screen preferences():
                     textbutton _("After Choices") action Preference("after choices", "toggle")
                     textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
 
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
+                ## Additional vboxes of type "radio_pref" or "check_pref" can be added here, to add additional creator-defined preferences.
 
             null height (4 * gui.pref_spacing)
 
@@ -862,9 +834,7 @@ style slider_vbox:
 
 ## History screen ##############################################################
 ##
-## This is a screen that displays the dialogue history to the player. While
-## there isn't anything special about this screen, it does have to access the
-## dialogue history stored in _history_list.
+## This is a screen that displays the dialogue history to the player. While there isn't anything special about this screen, it does have to access the dialogue history stored in _history_list.
 ##
 ## https://www.renpy.org/doc/html/history.html
 
@@ -893,8 +863,7 @@ screen history():
                         style "history_name"
                         substitute False
 
-                        ## Take the color of the who text from the Character, if
-                        ## set.
+                        ## Take the color of the who text from the Character, if set.
                         if "color" in h.who_args:
                             text_color h.who_args["color"]
 
@@ -952,9 +921,7 @@ style history_label_text:
 
 ## Help screen #################################################################
 ##
-## A screen that gives information about key and mouse bindings. It uses other
-## screens (keyboard_help, mouse_help, and gamepad_help) to display the actual
-## help.
+## A screen that gives information about key and mouse bindings. It uses other screens (keyboard_help, mouse_help, and gamepad_help) to display the actual help.
 
 screen help():
 
@@ -1120,8 +1087,7 @@ style help_label_text:
 
 ## Confirm screen ##############################################################
 ##
-## The confirm screen is called when Ren'Py wants to ask the player a yes or no
-## question.
+## The confirm screen is called when Ren'Py wants to ask the player a yes or no question.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#confirm
 
@@ -1183,8 +1149,7 @@ style confirm_button_text:
 
 ## Skip indicator screen #######################################################
 ##
-## The skip_indicator screen is displayed to indicate that skipping is in
-## progress.
+## The skip_indicator screen is displayed to indicate that skipping is in progress.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#skip-indicator
 
@@ -1232,15 +1197,13 @@ style skip_text:
     size gui.notify_text_size
 
 style skip_triangle:
-    ## We have to use a font that has the BLACK RIGHT-POINTING SMALL TRIANGLE
-    ## glyph in it.
+    ## We have to use a font that has the BLACK RIGHT-POINTING SMALL TRIANGLE glyph in it.
     font "DejaVuSans.ttf"
 
 
 ## Notify screen ###############################################################
 ##
-## The notify screen is used to show the player a message. (For example, when
-## the game is quicksaved or a screenshot has been taken.)
+## The notify screen is used to show the player a message. (For example, when the game is quicksaved or a screenshot has been taken.)
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#notify-screen
 
@@ -1304,8 +1267,7 @@ screen nvl(dialogue, items=None):
 
             use nvl_dialogue(dialogue)
 
-        ## Displays the menu, if given. The menu may be displayed incorrectly if
-        ## config.narrator_menu is set to True.
+        ## Displays the menu, if given. The menu may be displayed incorrectly if config.narrator_menu is set to True.
         for i in items:
 
             textbutton i.caption:
@@ -1334,8 +1296,7 @@ screen nvl_dialogue(dialogue):
                     id d.what_id
 
 
-## This controls the maximum number of NVL-mode entries that can be displayed at
-## once.
+## This controls the maximum number of NVL-mode entries that can be displayed at once.
 define config.nvl_list_length = gui.nvl_list_length
 
 style nvl_window is default
@@ -1403,8 +1364,7 @@ style pref_vbox:
     variant "medium"
     xsize 675
 
-## Since a mouse may not be present, we replace the quick menu with a version
-## that uses fewer and bigger buttons that are easier to touch.
+## Since a mouse may not be present, we replace the quick menu with a version that uses fewer and bigger buttons that are easier to touch.
 screen quick_menu():
     variant "touch"
 
