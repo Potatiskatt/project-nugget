@@ -23,15 +23,21 @@ define gui.show_name = True
 ## Text that is placed on the game's about screen. Place the text between the triple-quotes, and leave a blank line between paragraphs.
 
 define gui.about = _p("""
-This game was created by Sam Lövstad and Jonna Persson. It was originally made for the Spooktober 4th Annual Visual Novel {a=https://itch.io/jam/spooktober-vn-jam-2022/}Jam{/a} by DevTalk, but it did not get done in time due to other work. Anyway, help Nugget prepare for this year's Halloween Party!
+
+{b}GAME DESCRIPTION{/b}:
+
+It's Halloween again and all the dogs in Spooky Town needs to get everything ready. Nugget the Corgi has taken it upon themself to make sure that everything is ready, and can even make choices on food, drinks and such. How will this year's Halloween party turn out?
+
+{b}CREATORS{/b}:
 
 {b}Sam Lövstad{/b}: Narrative, Design, Writing, Programming.
 Link to his {a=https://samlovstad.itch.io/}itch.io page{/a}.
 
-{b}Jonna Persson{/b}: Art.
-Link to her {a=...}page{/a}.
+{b}Jonna Persson / teaatyazes{/b}: Art.
+Link to her {a=https://www.tumblr.com/teaatyazes}Tumblr page{/a}.
 
-OTHER CREDITS: ...
+{b}NAME OF OTHER CREATOR{/b}: What they did.
+Link to THEIR {a=LINK}SOMETHING page{/a}.
 """)
 
 
@@ -183,4 +189,4 @@ init python:
 
 ## The username and project name associated with an itch.io project, separated by a slash.
 
-# define build.itch_project = "renpytom/test-project"
+# define build.itch_project = "renpytom/project-nugget"
