@@ -33,13 +33,21 @@ default punch = False
 
 # Character pictures
 
-#   image d ... = "dex/filename.png"
+#   image d closed eyes = "dex/d_closed_eyes.png"
+#   image d open eyes = "dex/d_open_eyes.png"
+#   image d worried = "dex/d_worried.png"
 
-#   image j ... = "jasper/filename.png"
+#   image j closed eyes = "jasper/j_closed_eyes.png"
+#   image j open eyes = "jasper/j_open_eyes.png"
+#   image j worried = "jasper/j_worried.png"
 
-#   image lb ... = "lady bella/filename.png"
+#   image lb closed eyes = "lady bella/lb_closed_eyes.png"
+#   image lb open eyes = "lady bella/lb_open_eyes.png"
+#   image lb worried = "lady bella/lb_worried.png"
 
-#   image ll ... = "lady luna/filename.png"
+#   image ll closed eyes = "lady luna/ll_closed_eyes.png"
+#   image ll open eyes = "lady luna/ll_open_eyes.png"
+#   image ll worried = "lady luna/ll_worried.png"
 
 image n closed eyes = "nugget/n_closed_eyes.png"
 image n open eyes = "nugget/n_open_eyes.png"
@@ -49,9 +57,13 @@ image p closed eyes = "peanut/p_closed_eyes.png"
 image p open eyes = "peanut/p_open_eyes.png"
 image p worried = "peanut/p_worried.png"
 
-#   image s ... = "sabine/filename.png"
+#   image s closed eyes = "sabine/s_closed_eyes.png"
+#   image s open eyes = "sabine/s_open_eyes.png"
+#   image s worried = "sabine/s_worried.png"
 
-#   image z ... = "zmeya/filename.png"
+#   image z closed eyes = "zmeya/z_closed_eyes.png"
+#   image z open eyes = "zmeya/z_open_eyes.png"
+#   image z worried = "zmeya/z_worried.png"
 
 # Background pictures
 image bg test = "background/test.png"
@@ -91,7 +103,7 @@ label talk:
 
     menu:
 
-        #"Check in on:"
+        # "Check in on:"
         
         "Talk to Peanut":
             if peanut == False:
